@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma de Pagamento</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .opcao {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .opcao label {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .pix-area, .cartao-dados {
+            display: none;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        img {
+            width: 200px;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            background: #000;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Forma de Pagamento</h1>
+
+    <form action="pedido_confirmado.html">
+
+        <!-- PIX -->
+        <div class="opcao">
+            <label>
+                <input type="radio" name="pagamento" value="pix" required>
+                PIX
+            </label>
+
+            <div class="pix-area">
+                <p>Escaneie o QR Code abaixo para pagar via PIX:</p>
+
+                <!-- QR CODE DE EXEMPLO -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX-DE-EXEMPLO">
+
+                <p><strong>Pagamento instantâneo</strong></p>
+            </div>
+        </div>
+
+        <!-- CARTÃO -->
+        <div class="opcao">
+            <label>
+                <input type="radio" name="pagamento" value="cartao">
+                Cartão de Crédito
+            </label>
+
+            <div class="cartao-dados">
+                <input type="text" placeholder="Nome no cartão">
+                <input type="text" placeholder="Número do cartão">
+                <input type="text" placeholder="Validade (MM/AA)">
+                <input type="text" placeholder="CVV">
+
+                <select>
+                    <option>1x sem juros</option>
+                    <option>2x</option>
+                    <option>3x</option>
+                    <option>4x</option>
+                    <option>5x</option>
+                    <option>6x</option>
+                    <option>7x</option>
+                    <option>8x</option>
+                    <option>9x</option>
+                    <option>10x</option>
+                    <option>11x</option>
+                    <option>12x</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit">Finalizar Pagamento</button>
+    </form>
+</div>
+
+<script>
+    const radios = document.querySelectorAll('input[name="pagamento"]');
+    const pixArea = document.querySelector('.pix-area');
+    const cartaoArea = document.querySelector('.cartao-dados');
+
+    radios.forEach(radio => {
+        radio.addEventListener('change', () => {
+            if (radio.value === 'pix') {
+                pixArea.style.display = 'block';
+                cartaoArea.style.display = 'none';
+            } else {
+                pixArea.style.display = 'none';
+                cartaoArea.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
